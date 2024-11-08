@@ -11,37 +11,37 @@ import javax.persistence.*;
 @Entity
 
 public class Piloto implements Serializable {
-
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Id
-	private int Licencia;
-	private String Nombre;
-	private String Apellido;
+	
+	private int licencia;
+	private String nombre;
+	private String apellido;
 	private static final long serialVersionUID = 1L;
 
 	public Piloto() {
 		super();
 	}   
 	public int getLicencia() {
-		return this.Licencia;
+		return this.licencia;
 	}
 
 	public void setLicencia(int licencia) {
-		this.Licencia = licencia;
+		this.licencia = licencia;
 	}   
 	public String getNombre() {
-		return this.Nombre;
+		return this.nombre;
 	}
 
-	public void setNombre(String Nombre) {
-		this.Nombre = Nombre;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}   
 	public String getApellido() {
-		return this.Apellido;
+		return this.apellido;
 	}
 
-	public void setApellido(String Apellido) {
-		this.Apellido = Apellido;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
    
 }

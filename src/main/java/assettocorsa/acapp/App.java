@@ -1,40 +1,49 @@
 package assettocorsa.acapp;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.util.Scanner;
 
-import assettocorsa.classes.Coche;
+import assettocorsa.utils.UI_Circuito;
+import assettocorsa.utils.UI_Piloto;
+import assettocorsa.utils.UI_Coche;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-    	
-    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("assettocorsa");
-    	EntityManager em = emf.createEntityManager();	
-    	
-    	Coche c = new Coche("Ford", "Focus", "120cv", "Turismo");
-    	Coche c2 = new Coche("BMW", "M3 GT3", "494cv", "GT-3");
-    	Coche c92 = new Coche("Mercedes-Benz", "190E EVO II", "470cv", "SuperTurismo");
-    	Coche c4 = new Coche("Audi", "Quattro S1 E2", "550cv", "Rally");
-    	
-    	em.getTransaction().begin();
-    	
-    	em.persist(c);
-    	em.persist(c2);
-    	em.persist(c92);
-    	em.persist(c4);
-    	
-    	em.getTransaction().commit();
-    	
-    	em.close();
-    	emf.close();    	
-    	
-        System.out.println( "Hello World!" );
+public class App {
+    public static void main(String[] args) {
+        UI_Circuito uiCircuitos = new UI_Circuito();
+        UI_Piloto uiPilotos = new UI_Piloto();
+        UI_Coche uiCoches = new UI_Coche();
+        
+        Scanner input = new Scanner(System.in);
+        boolean salir = false;
+        
+        while (!salir) {
+            System.out.println("\n--- Gestión de Assetto Corsa ---");
+            System.out.println("1. Gestionar circuitos");
+            System.out.println("2. Gestionar pilotos");
+            System.out.println("3. Gestionar coches");
+            System.out.println("4. Salir");
+            System.out.print("Seleccione una opción: ");
+            
+            int opcion = input.nextInt();
+            
+            switch (opcion) {
+                case 1:
+                    uiCircuitos.mostrarMenu();   
+                    break;
+                case 2:
+                    uiPilotos.mostrarMenu();   
+                    break;
+                case 3:
+                    uiCoches.mostrarMenu();   
+                    break;
+                case 4:
+                    salir = true;
+                    System.out.println("Saliendo del programa...");
+                    break;
+                default:
+                    System.out.println("Opción no válida. Por favor, intente de nuevo.");
+            }
+        }
+
+        input.close();
     }
 }

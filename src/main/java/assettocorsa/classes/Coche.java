@@ -15,19 +15,11 @@ public class Coche implements Serializable {
 	@Id
 	
 	private int id;
-	private String Marca;
-	private String Modelo;
-	private String Potencia;
-	private String Tipo;
+	private String marca;
+	private String modelo;
+	private String potencia;
 	private static final long serialVersionUID = 1L;
 
-	public Coche(String marca, String modelo, String potencia, String tipo) {
-		super();
-		Marca = marca;
-		Modelo = modelo;
-		Potencia = potencia;
-		Tipo = tipo;
-	}
 	public Coche() {
 		super();
 	}   
@@ -39,32 +31,25 @@ public class Coche implements Serializable {
 		this.id = id;
 	}   
 	public String getMarca() {
-		return this.Marca;
+		return this.marca;
 	}
 
 	public void setMarca(String marca) {
-		this.Marca = marca;
+		this.marca = marca;
 	}   
 	public String getModelo() {
-		return this.Modelo;
+		return this.modelo;
 	}
 
 	public void setModelo(String modelo) {
-		this.Modelo = modelo;
+		this.modelo = modelo;
 	}   
 	public String getPotencia() {
-		return this.Potencia;
+		return this.potencia;
 	}
 
 	public void setPotencia(String potencia) {
-		this.Potencia = potencia;
-	}   
-	public String getTipo() {
-		return this.Tipo;
-	}
-
-	public void setTipo(String Tipo) {
-		this.Tipo = Tipo;
+		this.potencia = potencia;
 	}
    
 }
