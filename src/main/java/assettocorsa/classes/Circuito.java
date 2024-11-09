@@ -1,54 +1,55 @@
 package assettocorsa.classes;
 
 import java.io.Serializable;
+import java.lang.String;
 import javax.persistence.*;
 
+/**
+ * Entity implementation class for Entity: Circuito
+ *
+ */
 @Entity
+
 public class Circuito implements Serializable {
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Id
+	
+	private int id;
+	private String nombre;
+	private Double longitud;
+	private String localizacion;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    
-    private String nombre;
-    private String localizacion;
-    private String longitud;
+	public Circuito() {
+		super();
+	}   
+	public int getId() {
+		return this.id;
+	}
 
-    private static final long serialVersionUID = 1L;
+	public void setId(int id) {
+		this.id = id;
+	}   
+	public String getNombre() {
+		return this.nombre;
+	}
 
-    public Circuito() {
-        super();
-    }   
-    
-    public int getId() {
-        return this.id;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}   
+	public Double getLongitud() {
+		return this.longitud;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setLongitud(Double longitud) {
+		this.longitud = longitud;
+	}   
+	public String getLocalizacion() {
+		return this.localizacion;
+	}
 
-    public String getNombre() {
-        return this.nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getLongitud() {
-        return this.longitud;
-    }
-
-    public void setLongitud(String longitud) {
-        this.longitud = longitud;
-    }
-
-    public String getLocalizacion() {
-        return this.localizacion;
-    }
-
-    public void setLocalizacion(String localizacion) {
-        this.localizacion = localizacion;
-    }
+	public void setLocalizacion(String localizacion) {
+		this.localizacion = localizacion;
+	}
+   
 }

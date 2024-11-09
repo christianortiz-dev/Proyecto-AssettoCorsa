@@ -25,7 +25,7 @@ public class UI_Coche {
             System.out.println("3. Listar todos los Coches");
             System.out.println("4. Actualizar un Coche");
             System.out.println("5. Eliminar un Coche");
-            System.out.println("6. Salir");
+            System.out.println("6. Atras");
             System.out.print("Seleccione una opción: ");
 
             int opcion = scanner.nextInt();
@@ -56,17 +56,20 @@ public class UI_Coche {
             }
         }
 
-        scanner.close();
     }
 
     private void crearCoche() {
     	Coche nuevoCoche = new Coche();
-        System.out.print("Ingrese la marca del coche: ");
+    	
+        System.out.print("Ingrese la marca del coche: ");              
         nuevoCoche.setMarca(scanner.nextLine());
-        System.out.print("Ingrese el modelo del coche: ");
+        
+        System.out.print("Ingrese el modelo del coche: ");        
         nuevoCoche.setModelo(scanner.nextLine());
-        System.out.print("Ingrese la potencia del coche: ");
-        nuevoCoche.setPotencia(scanner.nextLine());
+        
+        System.out.print("Ingrese la potencia del coche: ");        
+        nuevoCoche.setPotencia(scanner.nextInt());
+        
         cocheDAO.crear(nuevoCoche);
         System.out.println("Coche");
     }
@@ -76,7 +79,7 @@ public class UI_Coche {
         int id = scanner.nextInt();
         Coche coche = cocheDAO.leer(id);
         if (coche != null) {
-            System.out.println("Coche encontrado: " + coche.getMarca() + coche.getModelo() + " de " + coche.getPotencia());
+            System.out.println("Coche encontrado: " + coche.getMarca() + " " + coche.getModelo() + " de " + coche.getPotencia());
         } else {
             System.out.println("Coche no encontrado.");
         }
@@ -101,7 +104,7 @@ public class UI_Coche {
             System.out.print("Nuevo Modelo (actual: " + coche.getModelo() + "): ");
             coche.setModelo(scanner.nextLine());
             System.out.print("Nueva Potencia (actual: " + coche.getPotencia() + "): ");
-            coche.setPotencia(scanner.nextLine());
+            coche.setPotencia(scanner.nextInt	());
             cocheDAO.actualizar(coche);
             System.out.println("coche actualizado exitosamente.");
         } else {
@@ -113,6 +116,6 @@ public class UI_Coche {
         System.out.print("Ingrese el ID del Coche a eliminar: ");
         int id = scanner.nextInt();
         cocheDAO.eliminar(id);
-        System.out.println("Coche eliminado (si existía en la base de datos).");
+        System.out.println("Coche eliminado");
     }
 }

@@ -56,15 +56,17 @@ public class UI_Piloto {
             }
         }
 
-        scanner.close();
     }
 
     private void crearPiloto() {
     	Piloto nuevoPiloto = new Piloto();
-        System.out.print("Ingrese el nombre del piloto: ");
+    	
+        System.out.print("Ingrese el nombre del piloto: ");        
         nuevoPiloto.setNombre(scanner.nextLine());
-        System.out.print("Ingrese el apellido del piloto: ");
+        
+        System.out.print("Ingrese el apellido del piloto: ");        
         nuevoPiloto.setApellido(scanner.nextLine());
+        
         pilotoDAO.crear(nuevoPiloto);
         System.out.println("Piloto");
     }
@@ -109,6 +111,6 @@ public class UI_Piloto {
         System.out.print("Ingrese el ID del piloto a eliminar: ");
         int id = scanner.nextInt();
         pilotoDAO.eliminar(id);
-        System.out.println("Piloto eliminado (si existía en la base de datos).");
+        System.out.println("Piloto eliminado");
     }
 }

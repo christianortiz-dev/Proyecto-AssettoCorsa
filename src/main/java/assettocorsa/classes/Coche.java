@@ -17,7 +17,7 @@ public class Coche implements Serializable {
 	private int id;
 	private String marca;
 	private String modelo;
-	private String potencia;
+	private int potencia;
 	private static final long serialVersionUID = 1L;
 
 	public Coche() {
@@ -44,11 +44,11 @@ public class Coche implements Serializable {
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}   
-	public String getPotencia() {
+	public int getPotencia() {
 		return this.potencia;
 	}
 
-	public void setPotencia(String potencia) {
+	public void setPotencia(int potencia) {
 		this.potencia = potencia;
 	}
    

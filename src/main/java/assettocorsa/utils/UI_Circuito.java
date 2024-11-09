@@ -20,12 +20,12 @@ public class UI_Circuito {
 
         while (!salir) {
             System.out.println("\n--- Gestión de Circuitos ---");
-            System.out.println("1. Crear un nuevo circuito");
-            System.out.println("2. Leer un circuito por ID");
-            System.out.println("3. Listar todos los circuitos");
-            System.out.println("4. Actualizar un circuito");
-            System.out.println("5. Eliminar un circuito");
-            System.out.println("6. Salir");
+            System.out.println("1. Crear un nuevo Circuito");
+            System.out.println("2. Leer un Circuito por ID");
+            System.out.println("3. Listar todos los Circuitos");
+            System.out.println("4. Actualizar un Circuito");
+            System.out.println("5. Eliminar un Circuito");
+            System.out.println("6. Atrás");
             System.out.print("Seleccione una opción: ");
 
             int opcion = scanner.nextInt();
@@ -55,18 +55,21 @@ public class UI_Circuito {
                     System.out.println("Opción no válida. Por favor, intente de nuevo.");
             }
         }
-
-        scanner.close();
     }
 
     private void crearCircuito() {
         Circuito nuevoCircuito = new Circuito();
-        System.out.print("Ingrese el nombre del circuito: ");
+
+        System.out.print("Ingrese nombre: ");
         nuevoCircuito.setNombre(scanner.nextLine());
-        System.out.print("Ingrese la longitud del circuito (ej. 3.34 km): ");
-        nuevoCircuito.setLongitud(scanner.nextLine());
-        System.out.print("Ingrese la localización del circuito: ");
+
+        System.out.print("Ingrese longitud: ");
+        nuevoCircuito.setLongitud(scanner.nextDouble());
+        scanner.nextLine();
+
+        System.out.print("Ingrese localización: ");
         nuevoCircuito.setLocalizacion(scanner.nextLine());
+
         circuitoDAO.crear(nuevoCircuito);
         System.out.println("Circuito creado exitosamente.");
     }
@@ -76,9 +79,7 @@ public class UI_Circuito {
         int id = scanner.nextInt();
         Circuito circuito = circuitoDAO.leer(id);
         if (circuito != null) {
-            System.out.println("Circuito encontrado: " + circuito.getNombre());
-            System.out.println("Longitud: " + circuito.getLongitud());
-            System.out.println("Localización: " + circuito.getLocalizacion());
+            System.out.println("Circuito encontrado: " + circuito.getNombre() + " (" + circuito.getLongitud() + " km en " + circuito.getLocalizacion());
         } else {
             System.out.println("Circuito no encontrado.");
         }
@@ -88,9 +89,7 @@ public class UI_Circuito {
         List<Circuito> circuitos = circuitoDAO.listar();
         System.out.println("\nLista de Circuitos:");
         for (Circuito circuito : circuitos) {
-            System.out.println("ID: " + circuito.getId() + ", Nombre: " + circuito.getNombre() +
-                               ", Longitud: " + circuito.getLongitud() +
-                               ", Localización: " + circuito.getLocalizacion());
+            System.out.println("ID: " + circuito.getId() + ", Nombre: " + circuito.getNombre() + ", Localización: " + circuito.getLocalizacion() + ", Longitud: " + circuito.getLongitud() + " km");
         }
     }
 
@@ -100,12 +99,16 @@ public class UI_Circuito {
         scanner.nextLine();  // Limpiar el salto de línea
         Circuito circuito = circuitoDAO.leer(id);
         if (circuito != null) {
-            System.out.print("Nuevo nombre (actual: " + circuito.getNombre() + "): ");
+            System.out.print("Nuevo Nombre (actual: " + circuito.getNombre() + "): ");
             circuito.setNombre(scanner.nextLine());
-            System.out.print("Nueva longitud (actual: " + circuito.getLongitud() + "): ");
-            circuito.setLongitud(scanner.nextLine());
-            System.out.print("Nueva localización (actual: " + circuito.getLocalizacion() + "): ");
+            
+            System.out.print("Nueva Longitud (actual: " + circuito.getLongitud() + " km): ");
+            circuito.setLongitud(scanner.nextDouble());
+            scanner.nextLine();  // Limpiar el salto de línea
+
+            System.out.print("Nueva Localización (actual: " + circuito.getLocalizacion() + "): ");
             circuito.setLocalizacion(scanner.nextLine());
+
             circuitoDAO.actualizar(circuito);
             System.out.println("Circuito actualizado exitosamente.");
         } else {
@@ -114,9 +117,9 @@ public class UI_Circuito {
     }
 
     private void eliminarCircuito() {
-        System.out.print("Ingrese el ID del circuito a eliminar: ");
         int id = scanner.nextInt();
+        System.out.print("Ingrese el ID del circuito a eliminar: ");
         circuitoDAO.eliminar(id);
-        System.out.println("Circuito eliminado (si existía en la base de datos).");
+        System.out.println("Circuito eliminado");
     }
 }
