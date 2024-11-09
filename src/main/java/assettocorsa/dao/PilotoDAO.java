@@ -37,7 +37,7 @@ public class PilotoDAO {
     public List<Piloto> listar() {
         EntityManager em = emf.createEntityManager();
         try {
-            return em.createQuery("from Circuito", Piloto.class).getResultList();
+            return em.createQuery("from Piloto", Piloto.class).getResultList();
         } finally {
             em.close();
         }

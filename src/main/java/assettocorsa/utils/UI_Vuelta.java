@@ -8,6 +8,8 @@ import assettocorsa.dao.VueltaDAO;
 import assettocorsa.dao.PilotoDAO;
 import assettocorsa.dao.CocheDAO;
 import assettocorsa.dao.CircuitoDAO;
+import assettocorsa.utils.UI_Coche;
+
 
 import java.util.List;
 import java.util.Scanner;
@@ -17,14 +19,19 @@ public class UI_Vuelta {
     private PilotoDAO pilotoDAO;
     private CocheDAO cocheDAO;
     private CircuitoDAO circuitoDAO;
+    
     private Scanner scanner;
+    
+    private UI_Coche uiCoche;
 
     public UI_Vuelta() {
         this.vueltaDAO = new VueltaDAO();
         this.pilotoDAO = new PilotoDAO();
         this.cocheDAO = new CocheDAO();
         this.circuitoDAO = new CircuitoDAO();
-        this.scanner = new Scanner(System.in);
+        this.scanner = new Scanner(System.in);  
+        
+        this.uiCoche = new UI_Coche();
     }
 
     public void mostrarMenu() {
@@ -72,24 +79,64 @@ public class UI_Vuelta {
     private void crearVuelta() {
         Vuelta nuevaVuelta = new Vuelta();
 
-        System.out.print("Ingrese el tiempo (en formato MM:SS:DDD: ");
+        System.out.print("Ingrese el tiempo (en formato MM:SS:DDD): ");
         nuevaVuelta.setTiempo(scanner.nextLine());
 
+        // Verificar existencia del piloto
         System.out.print("Ingrese el ID del piloto: ");
-        Piloto piloto = pilotoDAO.leer(scanner.nextInt());
+        int pilotoId = scanner.nextInt();
+        scanner.nextLine();  // Limpiar el salto de línea
+        Piloto piloto = pilotoDAO.leer(pilotoId);
+        if (piloto == null) {
+            System.out.println("Piloto no encontrado. ¿Desea crearlo? (S/N): ");
+            char opcion = scanner.nextLine().charAt(0);
+            if (opcion == 'S' || opcion == 's') {
+//                piloto = crearPiloto();
+            } else {
+                System.out.println("Operación cancelada. No se asignó piloto.");
+                return;
+            }
+        }
         nuevaVuelta.setPiloto(piloto);
 
+        // Verificar existencia del coche
         System.out.print("Ingrese el ID del coche: ");
-        Coche coche = cocheDAO.leer(scanner.nextInt());
+        int cocheId = scanner.nextInt();
+        scanner.nextLine();  // Limpiar el salto de línea
+        Coche coche = cocheDAO.leer(cocheId);
+        if (coche == null) {
+            System.out.println("Coche no encontrado. ¿Desea crearlo? (S/N): ");
+            char opcion = scanner.nextLine().charAt(0);
+            if (opcion == 'S' || opcion == 's') {
+                uiCoche.crearCoche();
+            } else {
+                System.out.println("Operación cancelada. No se asignó coche.");
+                return;
+            }
+        }
         nuevaVuelta.setCoche(coche);
 
+        // Verificar existencia del circuito
         System.out.print("Ingrese el ID del circuito: ");
-        Circuito circuito = circuitoDAO.leer(scanner.nextInt());
+        int circuitoId = scanner.nextInt();
+        scanner.nextLine();  // Limpiar el salto de línea
+        Circuito circuito = circuitoDAO.leer(circuitoId);
+        if (circuito == null) {
+            System.out.println("Circuito no encontrado. ¿Desea crearlo? (S/N): ");
+            char opcion = scanner.nextLine().charAt(0);
+            if (opcion == 'S' || opcion == 's') {
+//                circuito = crearCircuito();
+            } else {
+                System.out.println("Operación cancelada. No se asignó circuito.");
+                return;
+            }
+        }
         nuevaVuelta.setCircuito(circuito);
 
         vueltaDAO.crear(nuevaVuelta);
         System.out.println("Vuelta creada exitosamente.");
     }
+
 
     private void leerVuelta() {
         System.out.print("Ingrese el ID de la vuelta: ");
@@ -105,6 +152,7 @@ public class UI_Vuelta {
 
         } else {
             System.out.println("Vuelta no encontrada.");
+          
         }
     }
 
@@ -147,7 +195,7 @@ public class UI_Vuelta {
             scanner.nextLine(); 
 
             vueltaDAO.actualizar(vuelta);
-            System.out.println("Vuelta actualizada exitosamente.");
+            System.out.println("Vuelta (" + vuelta.getId() + ")) actualizada exitosamente.");
         } else {
             System.out.println("Vuelta no encontrada.");
         }

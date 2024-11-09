@@ -58,7 +58,7 @@ public class UI_Coche {
 
     }
 
-    private void crearCoche() {
+    void crearCoche() {
     	Coche nuevoCoche = new Coche();
     	
         System.out.print("Ingrese la marca del coche: ");              
@@ -89,7 +89,7 @@ public class UI_Coche {
         List<Coche> coches = cocheDAO.listar();
         System.out.println("\nLista de Coches:");
         for (Coche coche : coches) {
-            System.out.println("ID: " + coche.getId() + ", Nombre: " + coche.getMarca() + coche.getModelo());
+            System.out.println("ID: " + coche.getId() + ", Nombre: " + coche.getMarca() + " " + coche.getModelo() + " " + coche.getPotencia() + " cv");
         }
     }
 
@@ -106,7 +106,7 @@ public class UI_Coche {
             System.out.print("Nueva Potencia (actual: " + coche.getPotencia() + "): ");
             coche.setPotencia(scanner.nextInt	());
             cocheDAO.actualizar(coche);
-            System.out.println("coche actualizado exitosamente.");
+            System.out.println("Coche (" + coche.getMarca() + " " + coche.getModelo() + " (id:" + coche.getId() + ")) actualizado exitosamente.");
         } else {
             System.out.println("coche no encontrado.");
         }

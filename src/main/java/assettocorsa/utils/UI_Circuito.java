@@ -79,7 +79,7 @@ public class UI_Circuito {
         int id = scanner.nextInt();
         Circuito circuito = circuitoDAO.leer(id);
         if (circuito != null) {
-            System.out.println("Circuito encontrado: " + circuito.getNombre() + " (" + circuito.getLongitud() + " km en " + circuito.getLocalizacion());
+            System.out.println("Circuito encontrado: " + circuito.getNombre() + " (" + circuito.getLongitud() + " km) en " + circuito.getLocalizacion());
         } else {
             System.out.println("Circuito no encontrado.");
         }
@@ -110,7 +110,7 @@ public class UI_Circuito {
             circuito.setLocalizacion(scanner.nextLine());
 
             circuitoDAO.actualizar(circuito);
-            System.out.println("Circuito actualizado exitosamente.");
+            System.out.println("Circuito (" + circuito.getNombre() + " (id:" + circuito.getId() + ")) actualizado exitosamente.");
         } else {
             System.out.println("Circuito no encontrado.");
         }

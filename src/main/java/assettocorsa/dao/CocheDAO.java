@@ -37,7 +37,7 @@ public class CocheDAO {
     public List<Coche> listar() {
         EntityManager em = emf.createEntityManager();
         try {
-            return em.createQuery("from Circuito", Coche.class).getResultList();
+            return em.createQuery("from Coche", Coche.class).getResultList();
         } finally {
             em.close();
         }

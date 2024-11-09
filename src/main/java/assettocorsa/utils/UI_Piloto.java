@@ -76,7 +76,7 @@ public class UI_Piloto {
         int id = scanner.nextInt();
         Piloto piloto = pilotoDAO.leer(id);
         if (piloto != null) {
-            System.out.println("Piloto encontrado: " + piloto.getNombre() + piloto.getApellido());
+            System.out.println("Piloto encontrado: " + piloto.getNombre() + " " + piloto.getApellido());
         } else {
             System.out.println("Piloto no encontrado.");
         }
@@ -86,7 +86,7 @@ public class UI_Piloto {
         List<Piloto> pilotos = pilotoDAO.listar();
         System.out.println("\nLista de Pilotos:");
         for (Piloto piloto : pilotos) {
-            System.out.println("ID: " + piloto.getLicencia() + ", Nombre: " + piloto.getNombre() + piloto.getApellido());
+            System.out.println("ID: " + piloto.getLicencia() + ", Nombre: " + piloto.getNombre() + " " + piloto.getApellido());
         }
     }
 
@@ -101,7 +101,7 @@ public class UI_Piloto {
             System.out.print("Nuevo Apellido (actual: " + piloto.getApellido() + "): ");
             piloto.setApellido(scanner.nextLine());
             pilotoDAO.actualizar(piloto);
-            System.out.println("Piloto actualizado exitosamente.");
+            System.out.println("Piloto (" + piloto.getNombre() + " " + piloto.getApellido() + " (id:" + piloto.getLicencia() + ")) actualizado exitosamente.");
         } else {
             System.out.println("Piloto no encontrado.");
         }

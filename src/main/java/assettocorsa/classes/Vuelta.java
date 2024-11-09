@@ -15,16 +15,16 @@ public class Vuelta implements Serializable {
 
     private String tiempo;
 
-    @ManyToOne
-    @JoinColumn(name = "piloto_id")  // Se refiere a la columna piloto_id en la tabla Vuelta
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "piloto_id")
     private Piloto piloto;
 
-    @ManyToOne
-    @JoinColumn(name = "coche_id")  // Se refiere a la columna coche_id en la tabla Vuelta
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "coche_id")
     private Coche coche;
 
-    @ManyToOne
-    @JoinColumn(name = "circuito_id")  // Se refiere a la columna circuito_id en la tabla Vuelta
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "circuito_id")
     private Circuito circuito;
 
     private static final long serialVersionUID = 1L;
@@ -33,6 +33,7 @@ public class Vuelta implements Serializable {
         super();
     }
 
+    // Getters y setters
     public int getId() {
         return this.id;
     }
@@ -73,3 +74,4 @@ public class Vuelta implements Serializable {
         this.circuito = circuito;
     }
 }
+
