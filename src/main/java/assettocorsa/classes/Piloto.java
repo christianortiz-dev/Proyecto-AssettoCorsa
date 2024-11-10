@@ -13,34 +13,37 @@ import javax.persistence.*;
 @Entity
 
 public class Piloto implements Serializable {
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	
+
 	private int licencia;
 	private String nombre;
 	private String apellido;
 	private static final long serialVersionUID = 1L;
 
-    @OneToMany(mappedBy = "piloto", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Vuelta> vueltas;
-	
+	@OneToMany(mappedBy = "piloto", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Vuelta> vueltas;
+
 	public Piloto() {
 		super();
-	}   
+	}
+
 	public int getLicencia() {
 		return this.licencia;
 	}
 
 	public void setLicencia(int licencia) {
 		this.licencia = licencia;
-	}   
+	}
+
 	public String getNombre() {
 		return this.nombre;
 	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}   
+	}
+
 	public String getApellido() {
 		return this.apellido;
 	}
@@ -48,5 +51,5 @@ public class Piloto implements Serializable {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-   
+
 }

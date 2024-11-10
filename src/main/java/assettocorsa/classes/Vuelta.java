@@ -11,6 +11,7 @@ import javax.persistence.*;
 public class Vuelta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
     private int id;
 
     private String tiempo;
@@ -26,6 +27,7 @@ public class Vuelta implements Serializable {
     @ManyToOne
     @JoinColumn(name = "circuito_id")
     private Circuito circuito;
+    
     private static final long serialVersionUID = 1L;
 
     public Vuelta() {
@@ -71,7 +73,6 @@ public class Vuelta implements Serializable {
     }
 
     public void setCircuito(Circuito circuito) {
-        this.circuito = circuito;
-    }
+		this.circuito = circuito;
+	}
 }
-

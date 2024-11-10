@@ -56,5 +56,5 @@ public class Circuito implements Serializable {
 	public void setLocalizacion(String localizacion) {
 		this.localizacion = localizacion;
 	}
-   
+
 }
