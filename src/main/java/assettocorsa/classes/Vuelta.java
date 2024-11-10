@@ -15,23 +15,23 @@ public class Vuelta implements Serializable {
 
     private String tiempo;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "piloto_id")
     private Piloto piloto;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "coche_id")
     private Coche coche;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "circuito_id")
     private Circuito circuito;
-
     private static final long serialVersionUID = 1L;
 
     public Vuelta() {
         super();
     }
+
 
     // Getters y setters
     public int getId() {

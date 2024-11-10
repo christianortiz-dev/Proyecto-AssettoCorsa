@@ -25,7 +25,7 @@ public class UI_Piloto {
             System.out.println("3. Listar todos los pilotos");
             System.out.println("4. Actualizar un piloto");
             System.out.println("5. Eliminar un piloto");
-            System.out.println("6. Salir");
+            System.out.println("6. Atras");
             System.out.print("Seleccione una opción: ");
 
             int opcion = scanner.nextInt();
@@ -58,7 +58,7 @@ public class UI_Piloto {
 
     }
 
-    private void crearPiloto() {
+    void crearPiloto() {
     	Piloto nuevoPiloto = new Piloto();
     	
         System.out.print("Ingrese el nombre del piloto: ");        
@@ -68,7 +68,7 @@ public class UI_Piloto {
         nuevoPiloto.setApellido(scanner.nextLine());
         
         pilotoDAO.crear(nuevoPiloto);
-        System.out.println("Piloto");
+        System.out.println("Piloto creado");
     }
 
     private void leerPiloto() {

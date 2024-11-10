@@ -2,6 +2,8 @@ package assettocorsa.classes;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -19,6 +21,9 @@ public class Piloto implements Serializable {
 	private String apellido;
 	private static final long serialVersionUID = 1L;
 
+    @OneToMany(mappedBy = "piloto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Vuelta> vueltas;
+	
 	public Piloto() {
 		super();
 	}   

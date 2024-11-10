@@ -57,7 +57,7 @@ public class UI_Circuito {
         }
     }
 
-    private void crearCircuito() {
+    void crearCircuito() {
         Circuito nuevoCircuito = new Circuito();
 
         System.out.print("Ingrese nombre: ");
@@ -71,7 +71,7 @@ public class UI_Circuito {
         nuevoCircuito.setLocalizacion(scanner.nextLine());
 
         circuitoDAO.crear(nuevoCircuito);
-        System.out.println("Circuito creado exitosamente.");
+        System.out.println("Circuito creado.");
     }
 
     private void leerCircuito() {
@@ -117,9 +117,10 @@ public class UI_Circuito {
     }
 
     private void eliminarCircuito() {
-        int id = scanner.nextInt();
         System.out.print("Ingrese el ID del circuito a eliminar: ");
+        int id = scanner.nextInt();
         circuitoDAO.eliminar(id);
         System.out.println("Circuito eliminado");
     }
+
 }

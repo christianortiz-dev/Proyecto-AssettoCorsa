@@ -71,7 +71,7 @@ public class UI_Coche {
         nuevoCoche.setPotencia(scanner.nextInt());
         
         cocheDAO.crear(nuevoCoche);
-        System.out.println("Coche");
+        System.out.println("Coche creado.");
     }
 
     private void leerCoche() {

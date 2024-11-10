@@ -23,6 +23,8 @@ public class UI_Vuelta {
     private Scanner scanner;
     
     private UI_Coche uiCoche;
+    private UI_Piloto uiPiloto;
+    private UI_Circuito uiCircuito;
 
     public UI_Vuelta() {
         this.vueltaDAO = new VueltaDAO();
@@ -32,6 +34,8 @@ public class UI_Vuelta {
         this.scanner = new Scanner(System.in);  
         
         this.uiCoche = new UI_Coche();
+        this.uiPiloto = new UI_Piloto();
+        this.uiCircuito = new UI_Circuito();
     }
 
     public void mostrarMenu() {
@@ -91,7 +95,8 @@ public class UI_Vuelta {
             System.out.println("Piloto no encontrado. ¿Desea crearlo? (S/N): ");
             char opcion = scanner.nextLine().charAt(0);
             if (opcion == 'S' || opcion == 's') {
-//                piloto = crearPiloto();
+                uiPiloto.crearPiloto();
+                piloto = pilotoDAO.leer(pilotoId); // Leer el piloto recién creado
             } else {
                 System.out.println("Operación cancelada. No se asignó piloto.");
                 return;
@@ -109,6 +114,7 @@ public class UI_Vuelta {
             char opcion = scanner.nextLine().charAt(0);
             if (opcion == 'S' || opcion == 's') {
                 uiCoche.crearCoche();
+                coche = cocheDAO.leer(cocheId); // Leer el coche recién creado
             } else {
                 System.out.println("Operación cancelada. No se asignó coche.");
                 return;
@@ -125,7 +131,8 @@ public class UI_Vuelta {
             System.out.println("Circuito no encontrado. ¿Desea crearlo? (S/N): ");
             char opcion = scanner.nextLine().charAt(0);
             if (opcion == 'S' || opcion == 's') {
-//                circuito = crearCircuito();
+                uiCircuito.crearCircuito();
+                circuito = circuitoDAO.leer(circuitoId); // Leer el circuito recién creado
             } else {
                 System.out.println("Operación cancelada. No se asignó circuito.");
                 return;
@@ -136,6 +143,7 @@ public class UI_Vuelta {
         vueltaDAO.crear(nuevaVuelta);
         System.out.println("Vuelta creada exitosamente.");
     }
+
 
 
     private void leerVuelta() {

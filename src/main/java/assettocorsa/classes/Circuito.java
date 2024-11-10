@@ -2,6 +2,8 @@ package assettocorsa.classes;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -20,6 +22,9 @@ public class Circuito implements Serializable {
 	private String localizacion;
 	private static final long serialVersionUID = 1L;
 
+    @OneToMany(mappedBy = "circuito", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Vuelta> vueltas;
+	
 	public Circuito() {
 		super();
 	}   

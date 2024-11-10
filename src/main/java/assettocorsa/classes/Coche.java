@@ -2,6 +2,8 @@ package assettocorsa.classes;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -20,6 +22,9 @@ public class Coche implements Serializable {
 	private int potencia;
 	private static final long serialVersionUID = 1L;
 
+    @OneToMany(mappedBy = "coche", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Vuelta> vueltas;
+	
 	public Coche() {
 		super();
 	}   
