@@ -7,142 +7,156 @@ import java.util.List;
 import java.util.Scanner;
 
 public class UI_Piloto {
-	private PilotoDAO pilotoDAO;
-	private Scanner scanner;
+    private PilotoDAO pilotoDAO;
+    private Scanner scanner;
 
-	public UI_Piloto() {
-		this.pilotoDAO = new PilotoDAO();
-		this.scanner = new Scanner(System.in);
-	}
+    public UI_Piloto() {
+        this.pilotoDAO = new PilotoDAO();
+        this.scanner = new Scanner(System.in);
+    }
 
-	public void mostrarMenu() {
-		boolean salir = false;
+    public void mostrarMenu() {
+        boolean salir = false;
 
-		while (!salir) {
-			System.out.println("\n--- Gestión de Pilotos ---");
-			System.out.println("1. Crear un nuevo piloto");
-			System.out.println("2. Leer un piloto por ID");
-			System.out.println("3. Listar todos los pilotos");
-			System.out.println("4. Actualizar un piloto");
-			System.out.println("5. Eliminar un piloto");
-			System.out.println("6. Atras");
-			System.out.print("Seleccione una opción: ");
+        while (!salir) {
+            // Colores aplicados dentro del while
+            System.out.println("\033[0;36m╔══════════════════════════════╗\033[0m");
+            System.out.println("\033[0;36m║      Gestión de Pilotos      ║\033[0m");
+            System.out.println("\033[0;36m╚══════════════════════════════╝\033[0m");
 
-			int opcion = scanner.nextInt();
-			scanner.nextLine(); // Limpiar el salto de línea
+            System.out.println("➤ 1. Crear un nuevo piloto");
+            System.out.println("➤ 2. Leer un piloto por ID");
+            System.out.println("➤ 3. Listar todos los pilotos");
+            System.out.println("➤ 4. Actualizar un piloto");
+            System.out.println("➤ 5. Eliminar un piloto");
+            System.out.println("◁ 6. Atras");
+            System.out.print("Seleccione una opción: ");
 
-			switch (opcion) {
-			case 1:
-				crearPiloto();
-				break;
-			case 2:
-				leerPiloto();
-				break;
-			case 3:
-				listarPilotos();
-				break;
-			case 4:
-				actualizarPiloto();
-				break;
-			case 5:
-				eliminarPiloto();
-				break;
-			case 6:
-				salir = true;
-				System.out.println("Saliendo del programa...");
-				break;
-			default:
-				System.out.println("Opción no válida. Por favor, intente de nuevo.");
-			}
-		}
+            if (scanner.hasNextInt()) {
+                int opcion = scanner.nextInt();
+                scanner.nextLine();
 
-	}
+                switch (opcion) {
+                    case 1:
+                        crearPiloto();
+                        break;
+                    case 2:
+                        leerPiloto();
+                        break;
+                    case 3:
+                        listarPilotos();
+                        break;
+                    case 4:
+                        actualizarPiloto();
+                        break;
+                    case 5:
+                        eliminarPiloto();
+                        break;
+                    case 6:
+                        salir = true;
+                        System.out.println("\033[0;34mSaliendo del programa...\033[0m");
+                        break;
+                    default:
+                        System.out.println("\033[0;31mOpción no válida. Por favor, intente de nuevo.\033[0m");
+                }
 
-	void crearPiloto() {
-		Piloto nuevoPiloto = new Piloto();
+            } else {
+                System.out.println("\033[0;31m╔════════════════════════════════════════╗\033[0m");
+                System.out.println("\033[0;31m║            !!! ERROR !!!               ║\033[0m");
+                System.out.println("\033[0;31m║ Valor numérico requerido (1, 2, 3...)  ║\033[0m");
+                System.out.println("\033[0;31m╚════════════════════════════════════════╝\033[0m");
 
-		System.out.print("Ingrese el nombre del piloto: ");
-		nuevoPiloto.setNombre(scanner.nextLine());
+                scanner.next();
+            }
 
-		System.out.print("Ingrese el apellido del piloto: ");
-		nuevoPiloto.setApellido(scanner.nextLine());
+        }
+    }
 
-		pilotoDAO.crear(nuevoPiloto);
-		System.out.println("Piloto creado");
-	}
+    void crearPiloto() {
+        Piloto nuevoPiloto = new Piloto();
 
-	private void leerPiloto() {
-		System.out.print("Ingrese el ID del piloto: ");
-		int id = scanner.nextInt();
-		Piloto piloto = pilotoDAO.leer(id);
-		if (piloto != null) {
-			System.out.println("Piloto encontrado: " + piloto.getNombre() + " " + piloto.getApellido());
-		} else {
-			System.out.println("Piloto no encontrado.");
-		}
-	}
+        System.out.print("Ingrese el nombre del piloto: ");
+        nuevoPiloto.setNombre(scanner.nextLine());
 
-	private void listarPilotos() {
-		List<Piloto> pilotos = pilotoDAO.listar();
-		System.out.println("\nLista de Pilotos:");
-		for (Piloto piloto : pilotos) {
-			System.out.println(
-					"ID: " + piloto.getLicencia() + ", Nombre: " + piloto.getNombre() + " " + piloto.getApellido());
-		}
-	}
+        System.out.print("Ingrese el apellido del piloto: ");
+        nuevoPiloto.setApellido(scanner.nextLine());
 
-	private void actualizarPiloto() {
-		System.out.print("Ingrese el ID del piloto a actualizar: ");
-		int id = scanner.nextInt();
-		scanner.nextLine(); // Limpiar el salto de línea
-		Piloto piloto = pilotoDAO.leer(id);
-		if (piloto != null) {
+        pilotoDAO.crear(nuevoPiloto);
+        System.out.println("\033[0;32mPiloto creado.\033[0m");
+    }
 
-			boolean salir = false;
+    private void leerPiloto() {
+        System.out.print("Ingrese el ID del piloto: ");
+        int id = scanner.nextInt();
+        Piloto piloto = pilotoDAO.leer(id);
+        if (piloto != null) {
+            System.out.println("Piloto encontrado: " + piloto.getNombre() + " " + piloto.getApellido());
+        } else {
+            System.out.println("\033[0;31mPiloto no encontrado.\033[0m");
+        }
+    }
 
-			while (!salir) {
-				System.out.println("\n--- Actualizar piloto (id: " + piloto.getLicencia() + ") ---");
-				System.out.println("1. Actualizar nombre");
-				System.out.println("2. Actualizar apellido");
-				System.out.println("3. Cancelar");
-				System.out.print("Seleccione una opción: ");
+    private void listarPilotos() {
+        List<Piloto> pilotos = pilotoDAO.listar();
+        System.out.println("\n\033[0;34mLista de Pilotos:\033[0m");
+        for (Piloto piloto : pilotos) {
+            System.out.println(
+                    "ID: " + piloto.getLicencia() + ", Nombre: " + piloto.getNombre() + " " + piloto.getApellido());
+        }
+    }
 
-				int opcion = scanner.nextInt();
-				scanner.nextLine(); // Limpiar el salto de línea
+    private void actualizarPiloto() {
+        System.out.print("Ingrese el ID del piloto a actualizar: ");
+        int id = scanner.nextInt();
+        scanner.nextLine(); // Limpiar el salto de línea
+        Piloto piloto = pilotoDAO.leer(id);
+        if (piloto != null) {
 
-				switch (opcion) {
-				case 1:
-					System.out.print("Nuevo Nombre (actual: " + piloto.getNombre() + "): ");
-					piloto.setNombre(scanner.nextLine());
+            boolean salir = false;
 
-					pilotoDAO.actualizar(piloto);
-					System.out.println("Piloto actualizado exitosamente.");
-					break;
-				case 2:
-					System.out.print("Nuevo Apellido (actual: " + piloto.getApellido() + "): ");
-					piloto.setApellido(scanner.nextLine());
+            while (!salir) {
+                System.out.println("\n--- Actualizar piloto (id: " + piloto.getLicencia() + ") ---");
+                System.out.println("1. Actualizar nombre");
+                System.out.println("2. Actualizar apellido");
+                System.out.println("3. Cancelar");
+                System.out.print("Seleccione una opción: ");
 
-					pilotoDAO.actualizar(piloto);
-					System.out.println("Piloto actualizado exitosamente.");
-					break;
-				case 3:
-					salir = true;
-					System.out.println("Saliendo del programa...");
-					break;
-				default:
-					System.out.println("Opción no válida. Por favor, intente de nuevo.");
-				}
-			}
+                int opcion = scanner.nextInt();
+                scanner.nextLine(); // Limpiar el salto de línea
 
-		} else {
-			System.out.println("Piloto no encontrado.");
-		}
-	}
+                switch (opcion) {
+                    case 1:
+                        System.out.print("Nuevo Nombre (actual: " + piloto.getNombre() + "): ");
+                        piloto.setNombre(scanner.nextLine());
 
-	private void eliminarPiloto() {
-		System.out.print("Ingrese el ID del piloto a eliminar: ");
-		int id = scanner.nextInt();
-		pilotoDAO.eliminar(id);
-		System.out.println("Piloto eliminado");
-	}
+                        pilotoDAO.actualizar(piloto);
+                        System.out.println("\033[0;32mPiloto actualizado exitosamente.\033[0m");
+                        break;
+                    case 2:
+                        System.out.print("Nuevo Apellido (actual: " + piloto.getApellido() + "): ");
+                        piloto.setApellido(scanner.nextLine());
+
+                        pilotoDAO.actualizar(piloto);
+                        System.out.println("\033[0;32mPiloto actualizado exitosamente.\033[0m");
+                        break;
+                    case 3:
+                        salir = true;
+                        System.out.println("\033[0;34mSaliendo...\033[0m");
+                        break;
+                    default:
+                        System.out.println("\033[0;31mOpción no válida. Por favor, intente de nuevo.\033[0m");
+                }
+            }
+
+        } else {
+            System.out.println("\033[0;31mPiloto no encontrado.\033[0m");
+        }
+    }
+
+    private void eliminarPiloto() {
+        System.out.print("Ingrese el ID del piloto a eliminar: ");
+        int id = scanner.nextInt();
+        pilotoDAO.eliminar(id);
+        System.out.println("\033[0;32mPiloto eliminado.\033[0m");
+    }
 }
