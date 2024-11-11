@@ -19,7 +19,6 @@ public class UI_Piloto {
         boolean salir = false;
 
         while (!salir) {
-            // Colores aplicados dentro del while
             System.out.println("\033[0;36m╔══════════════════════════════╗\033[0m");
             System.out.println("\033[0;36m║      Gestión de Pilotos      ║\033[0m");
             System.out.println("\033[0;36m╚══════════════════════════════╝\033[0m");
@@ -108,7 +107,7 @@ public class UI_Piloto {
     private void actualizarPiloto() {
         System.out.print("Ingrese el ID del piloto a actualizar: ");
         int id = scanner.nextInt();
-        scanner.nextLine(); // Limpiar el salto de línea
+        scanner.nextLine();
         Piloto piloto = pilotoDAO.leer(id);
         if (piloto != null) {
 
@@ -122,7 +121,7 @@ public class UI_Piloto {
                 System.out.print("Seleccione una opción: ");
 
                 int opcion = scanner.nextInt();
-                scanner.nextLine(); // Limpiar el salto de línea
+                scanner.nextLine();
 
                 switch (opcion) {
                     case 1:

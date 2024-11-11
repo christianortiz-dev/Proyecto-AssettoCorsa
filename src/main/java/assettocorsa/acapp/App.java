@@ -18,9 +18,9 @@ public class App {
 		boolean salir = false;
 
 		while (!salir) {
-	        System.out.println("\033[0;36m╔════════════════════════════════╗\033[0m");
-	        System.out.println("\033[0;36m║    Gestión de Assetto Corsa    ║\033[0m");
-	        System.out.println("\033[0;36m╚════════════════════════════════╝\033[0m");
+	        System.out.println("\033[0;36m╔══════════════════════════════════════╗		 \033[0m");
+	        System.out.println("\033[0;36m║    \033[1mAssettoCorsa Management System    ║\033[0m");
+	        System.out.println("\033[0;36m╚══════════════════════════════════════╝		 \033[0m");
 			System.out.println("➤ 1. Gestionar circuitos");
 			System.out.println("➤ 2. Gestionar pilotos");
 			System.out.println("➤ 3. Gestionar coches");
